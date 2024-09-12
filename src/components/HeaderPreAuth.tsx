@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function HeaderPreAuth() {
   const { pathname } = useLocation();
-  console.log(pathname);
 
   return (
     <header className="bg-primary text-white p-4 fixed w-full top-0">
