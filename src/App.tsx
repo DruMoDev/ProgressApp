@@ -5,8 +5,6 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import LandingPage from "./pages/LandigPage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
 import PreAuthLayout from "./components/layouts/PreAuthLayout";
 import { useEffect, useState } from "react";
 import getUser from "./utils/functions/getUser";
@@ -64,8 +62,6 @@ export default function App() {
       !user?.aud ? (
         <Route path="/" element={<PreAuthLayout />}>
           <Route index element={<LandingPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
         </Route>
       ) : (
         <Route path="/" element={<PostAuthLayout />}>
@@ -79,12 +75,3 @@ export default function App() {
   return <RouterProvider router={router} />;
 }
 
-// export const userLoading = async () => {
-//   const user = await getUser();
-//   if (user) {
-//     return user;
-//   } else {
-//     console.log("User not found");
-//     return null;
-//   }
-// };
