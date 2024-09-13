@@ -21,10 +21,10 @@ const PublicOnlyRoute: React.FC = () => {
   if (isLoading) return <LoadingScreen />;
 
   if (authenticated && !profile?.weight)
-    return <Navigate to="/create-profile" replace />;
+    return <Navigate to="create-profile" replace />;
 
   if (authenticated && profile?.weight)
-    return <Navigate to="/dashboard" replace />;
+    return <Navigate to="dashboard" replace />;
 
   return <Outlet />;
 };
