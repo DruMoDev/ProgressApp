@@ -1,4 +1,3 @@
-import React from 'react'
 import useUserProfile from "../hooks/useUserProfile"
 import { Activity, Calendar, Clipboard, TrendingUp, User, Weight } from 'lucide-react'
 import { Link } from 'react-router-dom'
