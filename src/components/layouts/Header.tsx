@@ -1,13 +1,5 @@
 import { useState } from "react";
-import {
-  Dumbbell,
-  User,
-  Clipboard,
-  Calendar,
-  LogOut,
-  X,
-  Menu,
-} from "lucide-react";
+import { Dumbbell, User, Clipboard, Calendar, LogOut, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import useUserProfile from "../../hooks/useUserProfile";
 
