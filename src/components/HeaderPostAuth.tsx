@@ -1,13 +1,9 @@
 import { Dumbbell } from "lucide-react";
 import { Link } from "react-router-dom";
-import supabase from "../utils/supabase";
+import useUserProfile from "../hooks/useUserProfile";
 
 export default function HeaderPostAuth() {
-
-  const handleClick = async () => {
-    await supabase.auth.signOut();
-    window.location.reload()
-  };
+  const { logout } = useUserProfile();
 
   return (
     <header className="bg-primary text-white p-4 fixed w-full top-0">
@@ -18,7 +14,7 @@ export default function HeaderPostAuth() {
         </Link>
         <nav>
           <button
-            onClick={handleClick}
+            onClick={logout}
             className="ml-4 bg-white text-primary py-1 px-3 rounded-md font-semibold hover:bg-background transition duration-300 ease-in-out">
             Logout
           </button>

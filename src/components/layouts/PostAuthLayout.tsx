@@ -6,10 +6,7 @@ export default function PostAuthLayout() {
   return (
     <div className="min-h-screen bg-background text-textPrimary flex flex-col relative">
       <HeaderPostAuth />
-      <h1>HOLA LOCO POST</h1>
-      <main>
-        <Outlet />
-      </main>
+      <Outlet />
       <Footer />
     </div>
   );
