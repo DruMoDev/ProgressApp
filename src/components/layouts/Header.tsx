@@ -12,8 +12,11 @@ import { Link } from "react-router-dom";
 import useUserProfile from "../../hooks/useUserProfile";
 
 export default function Header() {
-  const { logout, authenticated } = useUserProfile();
+  const { logout, authenticated, profile } = useUserProfile();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  console.log(profile?.photoURL);
+  
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -24,6 +27,7 @@ export default function Header() {
         <Link to="/" className="flex items-center space-x-2 py-4">
           <Dumbbell size={28} />
           <span className="text-2xl font-bold">ProgressApp</span>
+          <img src={profile?.photoURL} alt="ProgressApp Logo" className="h-8" />
         </Link>
 
         {/* Navigation Menu */}
