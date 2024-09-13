@@ -1,61 +1,59 @@
 import React from "react";
-import { createBrowserRouter, Navigate } from "react-router-dom";
-import PreAuthLayout from "../components/layouts/PreAuthLayout";
-import PostAuthLayout from "../components/layouts/PostAuthLayout";
+import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
 import LandingPage from "../pages/LandingPage";
 import ProfileDataInput from "../pages/ProfileDataInputPage";
 import DashboardPage from "../pages/DashboardPage";
 import { LoadingScreen } from "../components/LoadingScreen";
 import useUserProfile from "../hooks/useUserProfile";
+import Layout from "../components/layouts/Layout";
 
-const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+const ProtectedRoute: React.FC = () => {
   const { authenticated } = useUserProfile();
+
   if (!authenticated) return <Navigate to="/" replace />;
-  return <>{children}</>;
+
+  return <Outlet />;
 };
 
-const PublicOnlyRoute: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+const PublicOnlyRoute: React.FC = () => {
   const { authenticated, profile, isLoading } = useUserProfile();
+
   if (isLoading) return <LoadingScreen />;
+
   if (authenticated && !profile?.weight)
     return <Navigate to="/create-profile" replace />;
+
   if (authenticated && profile?.weight)
     return <Navigate to="/dashboard" replace />;
-  return <>{children}</>;
+
+  return <Outlet />;
 };
 
 export const router = createBrowserRouter([
   {
-    element: (
-      <PublicOnlyRoute>
-        <PreAuthLayout />
-      </PublicOnlyRoute>
-    ),
+    element: <Layout />,
     children: [
       {
-        path: "/",
-        element: <LandingPage />,
-      },
-    ],
-  },
-  {
-    element: (
-      <ProtectedRoute>
-        <PostAuthLayout />
-      </ProtectedRoute>
-    ),
-    children: [
-      {
-        path: "dashboard",
-        element: <DashboardPage />,
+        element: <PublicOnlyRoute />,
+        children: [
+          {
+            path: "/",
+            element: <LandingPage />,
+          },
+        ],
       },
       {
-        path: "create-profile",
-        element: <ProfileDataInput />,
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "dashboard",
+            element: <DashboardPage />,
+          },
+          {
+            path: "create-profile",
+            element: <ProfileDataInput />,
+          },
+        ],
       },
     ],
   },

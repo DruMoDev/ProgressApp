@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
-import Footer from "../Footer";
-import HeaderPostAuth from "../HeaderPostAuth";
+import Footer from "./Footer";
+import Header from "./Header";
 
-export default function PostAuthLayout() {
+export default function Layout() {
   return (
     <div className="min-h-screen bg-background text-textPrimary flex flex-col relative">
-      <HeaderPostAuth />
+      <Header />
       <Outlet />
       <Footer />
     </div>
