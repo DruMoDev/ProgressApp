@@ -6,6 +6,7 @@ import DashboardPage from "../pages/DashboardPage";
 import { LoadingScreen } from "../components/LoadingScreen";
 import useUserProfile from "../hooks/useUserProfile";
 import Layout from "../components/layouts/Layout";
+import ErrorPage from "../pages/ErrorPage";
 
 const ProtectedRoute: React.FC = () => {
   const { authenticated } = useUserProfile();
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "*",
+        element: <ErrorPage />,
+      }
     ],
   },
 ]);
