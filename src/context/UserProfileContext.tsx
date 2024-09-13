@@ -68,7 +68,7 @@ export const UserProfileProvider: React.FC<{ children: ReactNode }> = ({
     await supabase.auth.signOut();
     setProfile(null);
     setAuthenticated(false);
-    window.location.reload();
+    window.location.href = "/";
   };
 
   return (
