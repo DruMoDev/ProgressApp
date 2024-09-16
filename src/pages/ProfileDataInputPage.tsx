@@ -2,9 +2,11 @@ import { useState } from "react";
 import { Save } from "lucide-react";
 import { Profile } from "../types/ProfileType";
 import useUserProfile from "../hooks/useUserProfile";
+import { Navigate } from "react-router-dom";
+import { LoadingScreen } from "../components/LoadingScreen";
 
 export default function ProfileDataInputPage() {
-  const { createProfile } = useUserProfile();
+  const { createProfile, profile, isLoading } = useUserProfile();
   const [profileData, setProfileData] = useState<Profile>({
     weight: 0,
     height: 0,
@@ -14,6 +16,9 @@ export default function ProfileDataInputPage() {
     activity_level: "",
     fitness_goal: "",
   });
+
+  if (isLoading) return <LoadingScreen />;
+  if (profile?.weight) return <Navigate to="/dashboard" replace />;
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>

@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom'
 export default function DashboardPage() {
   const { profile } = useUserProfile()
 
+  console.log("DashboardPage");
+  
+
   // Placeholder data (replace with actual data from your app)
   const recentWorkouts = [
     { date: '2023-06-01', name: 'Full Body Workout' },

@@ -9,24 +9,32 @@ import Layout from "../components/layouts/Layout";
 import ErrorPage from "../pages/ErrorPage";
 
 const ProtectedRoute: React.FC = () => {
-  const { authenticated } = useUserProfile();
+  const { authenticated, profile, isLoading } = useUserProfile();
 
+  if (isLoading) return <LoadingScreen />; // Mientras carga, muestra pantalla de carga
+
+  // Si no está autenticado, redirige a la landing page
   if (!authenticated) return <Navigate to="/" replace />;
 
+  // Si está autenticado pero no tiene perfil completo, redirige a la página de creación de perfil
+  if (authenticated && !profile?.weight) return <Navigate to="/create-profile" replace />;
+
+  // Si todo está en orden, renderiza el contenido de las rutas protegidas
   return <Outlet />;
 };
 
 const PublicOnlyRoute: React.FC = () => {
   const { authenticated, profile, isLoading } = useUserProfile();
 
-  if (isLoading) return <LoadingScreen />;
+  if (isLoading) return <LoadingScreen />; // Mientras carga, muestra pantalla de carga
 
-  if (authenticated && !profile?.weight)
-    return <Navigate to="create-profile" replace />;
+  // Si está autenticado y ya tiene perfil, redirige al dashboard
+  if (authenticated && profile?.weight) return <Navigate to="/dashboard" replace />;
 
-  if (authenticated && profile?.weight)
-    return <Navigate to="dashboard" replace />;
+  // Si está autenticado pero no tiene perfil, redirige a la página de creación de perfil
+  if (authenticated && !profile?.weight) return <Navigate to="/create-profile" replace />;
 
+  // Si no está autenticado, renderiza el contenido de las rutas públicas
   return <Outlet />;
 };
 
