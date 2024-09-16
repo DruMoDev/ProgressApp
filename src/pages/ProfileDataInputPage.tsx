@@ -17,12 +17,8 @@ export default function ProfileDataInputPage() {
     fitness_goal: "",
   });
 
-  console.log("llega aqui? 1");
-  
   if (isLoading) return <LoadingScreen />;
   if (profile?.weight) return <Navigate to="/dashboard" replace />;
-  console.log("llega aqui?");
-  
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -36,8 +32,8 @@ export default function ProfileDataInputPage() {
   };
 
   return (
-    <main className="flex-grow container mx-auto px-4 my-16 mt-20">
-      <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
+    
+      <div className="max-w-md bg-white rounded-lg shadow-md p-6 container">
         <h1 className="text-2xl font-bold mb-6 text-center">
           Your Profile Data
         </h1>
@@ -167,6 +163,6 @@ export default function ProfileDataInputPage() {
           </button>
         </form>
       </div>
-    </main>
+    
   );
 }

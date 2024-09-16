@@ -11,7 +11,7 @@ export default function Header() {
 
   return (
     <header className="bg-primary text-white min-h-16 items-center flex fixed w-full top-0 z-50 shadow-lg">
-      <div className="container mx-auto flex items-center justify-between px-4">
+      <div className="container flex items-center justify-between ">
         {/* Logo and brand name */}
         <Link to="/" className="flex items-center space-x-2 py-4">
           <Dumbbell size={28} />

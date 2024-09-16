@@ -20,7 +20,7 @@ const LandigPage = () => {
   };
 
   return (
-    <main className="flex-grow container mx-auto px-4 py-8 flex flex-col items-center justify-center text-center">
+    <main className="flex-grow container py-8 flex flex-col items-center justify-center text-center">
       <h1 className="text-4xl font-bold mb-4">Track Your Fitness Journey</h1>
       <p className="text-secondary mb-8 max-w-md">
         ProgressApp helps you monitor and celebrate your gym achievements. Log
