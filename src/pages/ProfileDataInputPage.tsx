@@ -17,8 +17,12 @@ export default function ProfileDataInputPage() {
     fitness_goal: "",
   });
 
+  console.log("llega aqui? 1");
+  
   if (isLoading) return <LoadingScreen />;
   if (profile?.weight) return <Navigate to="/dashboard" replace />;
+  console.log("llega aqui?");
+  
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>

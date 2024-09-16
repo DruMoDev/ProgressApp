@@ -36,7 +36,6 @@ export const UserProfileProvider: React.FC<{ children: ReactNode }> = ({
       setIsLoading,
     });
   }, []);
-  console.log(profile);
 
   const createProfile = async (profileData: Profile) => {
     const newProfile = {

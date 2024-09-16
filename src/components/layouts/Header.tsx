@@ -7,8 +7,6 @@ export default function Header() {
   const { logout, authenticated, profile } = useUserProfile();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  console.log(profile?.photoURL);
-
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
