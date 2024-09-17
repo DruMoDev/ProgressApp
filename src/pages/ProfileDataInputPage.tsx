@@ -4,21 +4,23 @@ import { Profile } from "../types/ProfileType";
 import useUserProfile from "../hooks/useUserProfile";
 import { Navigate } from "react-router-dom";
 import { LoadingScreen } from "../components/LoadingScreen";
+import useProfile from "../hooks/useProfile";
 
 export default function ProfileDataInputPage() {
-  const { createProfile, profile, isLoading } = useUserProfile();
+  const { createProfile } = useUserProfile();
+  const {profile, isLoading} = useProfile()
   const [profileData, setProfileData] = useState<Profile>({
     weight: 0,
     height: 0,
     target_weight: 0,
-    age: 0,
+    age: new Date().toISOString(),
     gender: "",
     activity_level: "",
     fitness_goal: "",
   });
 
   if (isLoading) return <LoadingScreen />;
-  if (profile?.weight) return <Navigate to="/dashboard" replace />;
+  if (profile) return <Navigate to="/dashboard" replace />;
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -28,8 +30,19 @@ export default function ProfileDataInputPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+  
+    const { weight, height, target_weight } = profileData;
+  
+    if (weight <= 0 || height <= 0 || target_weight <= 0 ) {
+      alert("Please fill out all fields correctly.");
+      return;
+    }
+    
     createProfile(profileData);
   };
+
+  console.log(profileData.age);
+  
 
   return (
     
@@ -87,11 +100,11 @@ export default function ProfileDataInputPage() {
               Age
             </label>
             <input
-              type="number"
+              type="date"
               id="age"
               name="age"
               value={profileData.age}
-              onChange={handleChange}
+              onChange={(e) => setProfileData({...profileData, age: e.target.value}) }
               className="w-full px-2 py-1 border border-[#4B5563] rounded-md focus:outline-none focus:ring-2 focus:ring-[#1E90FF]"
               required
             />

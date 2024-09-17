@@ -1,16 +1,18 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { LoadingScreen } from "../components/LoadingScreen";
-import useUserProfile from "../hooks/useUserProfile";
+import useUser from "../hooks/useUser";
+import useProfile from "../hooks/useProfile";
 
 export default function PublicRoute() {
-  const { authenticated, profile, isLoading } = useUserProfile();
+  const { profile } = useProfile();
+  const {user, isLoading} = useUser()  
 
   if (isLoading) return <LoadingScreen />;
 
-  if (authenticated && profile?.weight)
+  if (user && profile)
     return <Navigate to="/dashboard" replace />;
 
-  if (authenticated && !profile?.weight)
+  if (user && !profile)
     return <Navigate to="/create-profile" replace />;
 
   return <Outlet />;

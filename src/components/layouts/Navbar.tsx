@@ -1,16 +1,22 @@
 import { useState } from "react";
-import useUserProfile from "../../hooks/useUserProfile";
 import { X, User, Calendar, LogOut, Clipboard } from "lucide-react";
 import { Link } from "react-router-dom";
+import useUser from "../../hooks/useUser";
+import useProfile from "../../hooks/useProfile";
+import logout from "../../utils/functions/logout";
 
 export default function Navbar() {
-  const { logout, authenticated, profile } = useUserProfile();
+  const {user} = useUser()
+  const {profile} = useProfile()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+ 
+  
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   return (
     <>
-      {authenticated && (
+      {user && (
         <nav className="relative">
           <button
             onClick={toggleMenu}

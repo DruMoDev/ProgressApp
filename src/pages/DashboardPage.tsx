@@ -1,4 +1,3 @@
-import useUserProfile from "../hooks/useUserProfile";
 import {
   Activity,
   Calendar,
@@ -8,9 +7,11 @@ import {
   Weight,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import useProfile from "../hooks/useProfile";
+import { LoadingScreen } from "../components/LoadingScreen";
 
 export default function DashboardPage() {
-  const { profile } = useUserProfile();
+  const { profile, isLoading } = useProfile();
 
   // Placeholder data (replace with actual data from your app)
   const recentWorkouts = [
@@ -18,6 +19,8 @@ export default function DashboardPage() {
     { date: "2023-05-29", name: "Cardio Session" },
     { date: "2023-05-27", name: "Leg Day" },
   ];
+
+  if (isLoading) return <LoadingScreen />;
 
   return (
     <>

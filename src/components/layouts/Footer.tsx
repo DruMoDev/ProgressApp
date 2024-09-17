@@ -1,10 +1,9 @@
 import { useLocation } from "react-router-dom";
-import useUserProfile from "../../hooks/useUserProfile";
+import useProfile from "../../hooks/useProfile";
 
 export default function Footer() {
-  const { isLoading } = useUserProfile();
+  const { isLoading } = useProfile();
   const { pathname } = useLocation();
-  console.log(pathname);
 
   if (isLoading) return;
 
