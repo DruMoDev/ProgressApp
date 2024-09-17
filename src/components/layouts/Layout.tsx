@@ -4,9 +4,9 @@ import Header from "./Header";
 
 export default function Layout() {
   return (
-    <div className="min-h-screen bg-background text-textPrimary flex flex-col relative">
+    <div className="min-h-screen bg-background text-textPrimary flex flex-col relative pt-24 lg:pt-32 pb-16">
       <Header />
-      <main className="flex-grow bg-background pt-28 pb-16 mx-auto w-full">
+      <main className="flex-grow w-full container">
         <Outlet />
       </main>
       <Footer />

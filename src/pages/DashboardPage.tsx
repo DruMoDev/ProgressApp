@@ -20,7 +20,7 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div className="container">
+    <>
       <h1 className="text-3xl font-bold text-textPrimary mb-6">
         Welcome, {profile?.name || profile?.email || "Fitness Enthusiast"}!
       </h1>
@@ -96,6 +96,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

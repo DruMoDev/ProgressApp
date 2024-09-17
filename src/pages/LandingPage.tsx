@@ -20,7 +20,7 @@ const LandigPage = () => {
   };
 
   return (
-    <main className="flex-grow container py-8 flex flex-col items-center justify-center text-center">
+    <div className="flex flex-col items-center justify-center text-center mt-20">
       <h1 className="text-4xl font-bold mb-4">Track Your Fitness Journey</h1>
       <p className="text-secondary mb-8 max-w-md">
         ProgressApp helps you monitor and celebrate your gym achievements. Log
@@ -34,7 +34,7 @@ const LandigPage = () => {
           <ArrowRight size={20} className="ml-2" />
         </button>
       </div>
-    </main>
+    </div>
   );
 };
 export default LandigPage;
