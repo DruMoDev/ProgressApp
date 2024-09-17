@@ -1,10 +1,10 @@
 import { Dumbbell } from "lucide-react";
 import { Link } from "react-router-dom";
-import useUserProfile from "../../hooks/useUserProfile";
 import Navbar from "./Navbar";
+import useProfile from "../../hooks/useProfile";
 
 export default function Header() {
-  const { isLoading } = useUserProfile();
+  const { isLoading } = useProfile();
 
   if (isLoading) return null;
 

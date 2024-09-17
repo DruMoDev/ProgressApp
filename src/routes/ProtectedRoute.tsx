@@ -1,16 +1,18 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { LoadingScreen } from "../components/LoadingScreen";
-import useUserProfile from "../hooks/useUserProfile";
+import useUser from "../hooks/useUser";
+import useProfile from "../hooks/useProfile";
 
 export default function ProtectedRoute() {
-  const { authenticated, profile, isLoading } = useUserProfile();
+  const { user } = useUser();
+  const {profile, isLoading} = useProfile()
   const location = useLocation();
 
   if (isLoading) return <LoadingScreen />;
 
-  if (!authenticated) return <Navigate to="/" replace />;
+  if (!user) return <Navigate to="/" replace />;
 
-  if (!profile?.weight && location.pathname !== "/create-profile") {
+  if (!profile && location.pathname !== "/create-profile") {
     return <Navigate to="/create-profile" replace />;
   }
 
