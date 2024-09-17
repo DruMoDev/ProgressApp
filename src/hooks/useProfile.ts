@@ -11,7 +11,7 @@ export default function useProfile() {
     error,
     isLoading,
   } = useQuery({
-    queryKey: ["profile", user],
+    queryKey: ["profile", user?.id],
     queryFn: async () => await fetchProfileInfo(user?.id),
   });
 

@@ -1,11 +1,10 @@
 import { createContext, ReactNode } from "react";
-import { Profile } from "../types/ProfileType";
-import useUser from "../hooks/useUser";
 import supabase from "../utils/supabase";
 import { useMutation } from "@tanstack/react-query";
+import { Tables } from "../types/supabase";
 
 interface UserProfileContextType {
-  createProfile: (profileData: Profile) => void;
+  createProfile: (profileData: Tables<"profiles">) => void;
 }
 
 export const UserProfileContext = createContext<
@@ -15,14 +14,10 @@ export const UserProfileContext = createContext<
 export const UserProfileProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const { user } = useUser();
 
   const { mutate: createProfile } = useMutation({
-    mutationFn: async (profileData: Profile) => {
+    mutationFn: async (profileData: Tables<"profiles">) => {
       const newProfile = {
-        email: user?.email,
-        name: user?.user_metadata.name,
-        photoURL: user?.user_metadata.photoURL,
         ...profileData,
       };
       const { error } = await supabase.from("profiles").insert([newProfile]);

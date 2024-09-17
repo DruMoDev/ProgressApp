@@ -10,3 +10,4 @@ export type Profile = {
   name?: string;
   photoURL?: string;
 };
+
